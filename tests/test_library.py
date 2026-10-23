@@ -71,6 +71,15 @@ class LibraryTests(unittest.TestCase):
         self.assertEqual([i.item_id for i in self.lib.search("rizal")], ["B1"])
         self.assertEqual([i.item_id for i in self.lib.search("graphic")], ["M1"])
 
+    def test_search_finds_thesis_by_adviser(self):
+        self.lib.add_item(
+            Thesis("T1", "Library Management Systems", 2025, "Prof. Reyes")
+        )
+
+        results = self.lib.search("Prof. Reyes")
+
+        self.assertEqual([item.item_id for item in results], ["T1"])
+
     def test_overdue_report(self):
         self.lib.borrow("M1", "S1", DAY1)
 
