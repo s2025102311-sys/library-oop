@@ -2,7 +2,7 @@ from datetime import date
 
 """Console front end. Run: python main.py"""
 from library.exceptions import LibraryError
-from library.models import Book, Faculty, Magazine, Student
+from library.models import Book, Faculty, Magazine, ReferenceBook, Student, Thesis
 from library.services import Library
 
 
@@ -12,6 +12,8 @@ def seed():
     lib.add_item(Book("B002", "Python Crash Course", 2023, "Eric Matthes"))
     lib.add_item(Book("B003", "Clean Code", 2008, "Robert C. Martin"))
     lib.add_item(Magazine("M001", "Philippine Graphic", 2024, "Issue 12"))
+    lib.add_item(ReferenceBook("R001", "Computer Science Encyclopedia", 2024, "BSCS Press"))
+    lib.add_item(Thesis("T001", "Library Management Systems", 2025, "Prof. Tibayan"))
     lib.register(Student("S001", "Mika Santos"))
     lib.register(Faculty("F001", "Prof. Reyes"))
     return lib
