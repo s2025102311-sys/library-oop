@@ -73,9 +73,15 @@ class LibraryTests(unittest.TestCase):
 
     def test_overdue_report(self):
         self.lib.borrow("M1", "S1", DAY1)
-        self.assertEqual(len(self.lib.overdue(date(2026, 10, 9))), 1)
-        self.assertEqual(len(self.lib.overdue(date(2026, 10, 8))), 0)
 
+        overdue_loans = self.lib.overdue(date(2026, 10, 9))
+
+        self.assertEqual(len(overdue_loans), 1)
+        self.assertEqual(overdue_loans[0].item.item_id, "M1")
+        self.assertEqual(
+            len(self.lib.overdue(date(2026, 10, 8))),
+        0,
+        )
     
     def test_reference_books_cannot_be_borrowed(self):
         reference = ReferenceBook("R1", "Dictionary", 2020, "Oxford")
