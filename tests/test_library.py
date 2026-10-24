@@ -134,6 +134,12 @@ class LibraryTests(unittest.TestCase):
         with self.assertRaises(LibraryError):
             self.lib.renew("B1", date(2026, 10, 16))
 
+    def test_cannot_renew_without_active_loan(self):
+        self.lib.add_item(Book("B67", "Python Basics for CS Student", 2024, "CS Author"))
+
+        with self.assertRaises(LibraryError):
+            self.lib.renew("B67", DAY1)
+
 
 
 
